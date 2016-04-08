@@ -3,5 +3,7 @@
   */
 class Record (name:String, salary: Int, department: String) {
 
-  override def toString(): String = (name + salary + department)
+  val id = java.util.UUID.randomUUID.toString
+
+  override def toString(): String = (id + ": " + name + " " + salary + department)
 }
