@@ -2,10 +2,11 @@
   * Created by user on 08.04.16.
   */
 import scala.io.StdIn.readLine
+import scala.collection.mutable.ArrayBuffer
 
 object main extends App {
 
-  var records = Array[Record]()
+  var records = ArrayBuffer.empty[Record]
 
   main()
 
@@ -15,8 +16,8 @@ object main extends App {
     val fio = readLine()
     val salary : Int = readLine().toInt
     val department = readLine()
-    //val rec = new Record(fio, salary, department)
-    records :+ new Record(fio, salary, department)
+
+    records += new Record(fio, salary, department)
     println(records.lastOption.toString())
   }
 }
