@@ -1,26 +1,22 @@
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.immutable.List
 
 /**
   * Created by user on 11.04.16.
   */
 class DataContainer {
 
-  var records = ArrayBuffer.empty[Record]
-  var id: Int = 0
+  var records = List.empty[Record]
 
   def add(name: String, salary: Int, department: String): Unit = {
-    id += 1
-    records += new Record(id, name, salary, department)
+    records = new Record(name, salary, department) :: records
   }
 
-  def showAll(): Unit = {
-    records.foreach(r => println(r.toString()))
-  }
+  def showAll(): Unit = records.foreach(println)
 
   def totalSum(): Int = records.map(_.salary).sum
 
   def totalSum(department: String): Int =
-    records.filter(_.department == department).map(_.salary).sum
+    records.filter(r => r.department == department).map(_.salary).sum
 
   def averageSum(department: String): Float = {
     val items = records.filter(r => r.department == department).map(_.salary)
@@ -28,5 +24,5 @@ class DataContainer {
   }
 
   def findUser(name: String): String =
-    records.find(_.name == name).toString
+    records.find(r => r.name == name).toString
 }

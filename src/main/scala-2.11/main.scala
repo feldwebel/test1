@@ -1,7 +1,7 @@
 /**
   * Created by user on 08.04.16.
   */
-import scala.io.StdIn.readLine
+import scala.io.StdIn._
 
 object main extends App {
 
@@ -11,7 +11,7 @@ object main extends App {
   while (loop) {
     showMenu()
 
-    readLine().toInt match {
+    readInt() match {
       case 0 => loop = false
       case 1 => addRecord()
       case 2 => showUsers()
@@ -24,11 +24,11 @@ object main extends App {
   }
 
   private def addRecord(): Unit = {
-    val fio = readLine("name: ")
-    val salary : Int = readLine("salary: ").toInt
-    val department = readLine("department: ")
-
-    workData.add(fio, salary, department)
+    workData.add(
+      name = readLine("name: "),
+      salary = readLine("salary: ").toInt,
+      department = readLine("department: ")
+    )
   }
 
   private def showUsers(): Unit = {
